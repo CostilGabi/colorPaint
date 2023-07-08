@@ -1,0 +1,41 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "lib": ["DOM", "DOM.Iterable", "ESNext"],
+        "module": "ESNext",
+        "skipLibCheck": true,
+        "paths": {
+            "@common-styles/*": [
+                "./src/assets/styles/common",
+                "./src/assets/styles/common/*"
+            ],
+            "@helpers/*": ["./src/helpers", "./src/helpers/*"],
+            "@common-components/*": [
+                "./src/components/common",
+                "./src/components/common/*"
+            ],
+            "@images/*": ["./src/assets/img", "./src/assets/img/*"]
+        },
+        /* Bundler mode */
+        "moduleResolution": "bundler",
+        "allowImportingTsExtensions": true,
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "jsx": "react-jsx",
+        /* Linting */
+        "strict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noFallthroughCasesInSwitch": true,
+        "allowSyntheticDefaultImports": true,
+        "types": ["vite-plugin-svgr/client"]
+    },
+    "include": ["src", "vite.config.ts"],
+    "exclude": ["node_modules"],
+    "references": [
+        {
+            "path": "./tsconfig.node.json"
+        }
+    ]
+}
