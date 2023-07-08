@@ -9,6 +9,7 @@ type CanvasProps = {
 }
 
 const Canvas: React.FC<CanvasProps> = ({ deleteMode, thickMode, shadowMode, shadowColor, lineColor }) => {
+    
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const isDrawing = useRef(false)
 
@@ -17,8 +18,10 @@ const Canvas: React.FC<CanvasProps> = ({ deleteMode, thickMode, shadowMode, shad
     }
 
     const stopDrawing = (ctx: CanvasRenderingContext2D) => {
+
         isDrawing.current = false
         ctx?.beginPath()
+
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -39,6 +42,7 @@ const Canvas: React.FC<CanvasProps> = ({ deleteMode, thickMode, shadowMode, shad
     }
 
     useEffect(() => {
+
         const canvas = canvasRef.current
         if (!canvas) return;
 
@@ -80,15 +84,19 @@ const Canvas: React.FC<CanvasProps> = ({ deleteMode, thickMode, shadowMode, shad
         canvas.addEventListener('mouseup', handleMouseUp)
 
         return () => {
+
             canvas.removeEventListener('mousemove', handleMouseMove)
             canvas.removeEventListener('mousedown', handleMouseDown)
             canvas.removeEventListener('mouseup', handleMouseUp)
             cancelAnimationFrame(animationFrameId)
         }
+
     }, [deleteMode, letDraw])
 
     useEffect(() => {
+
         const resizeCanvas = () => {
+
             const canvas = canvasRef.current
             if (!canvas) return
 
@@ -98,19 +106,21 @@ const Canvas: React.FC<CanvasProps> = ({ deleteMode, thickMode, shadowMode, shad
             const { width, height } = parent.getBoundingClientRect()
             canvas.width = width
             canvas.height = height
+
         }
     
         window.addEventListener('resize', resizeCanvas)
         resizeCanvas()
     
         return () => {
+
             window.removeEventListener('resize', resizeCanvas)
+
         }
+
       }, [])
 
-    return (
-        <canvas ref={canvasRef} style={{ width: '100%', height: '100%' }} />
-    )
+    return <canvas ref={canvasRef} />
 }
 
 export default Canvas

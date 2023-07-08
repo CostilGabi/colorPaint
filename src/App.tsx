@@ -3,6 +3,7 @@ import Canvas from './Canvas'
 import { ReactComponent as Delete } from './assets/delete.svg'
 
 function App() {
+
     const [deleteMode, setDeleteMode] = useState(false)
     const [numWidth, setNumWidth] = useState(2)
     const [shadoWidth, setShadoWidth] = useState(15)
@@ -61,10 +62,6 @@ function App() {
         setDeleteMode(false)
     }, [deleteMode])
 
-    useEffect(() => {
-        setNumWidth(numWidth)
-    }, [numWidth])
-
     return (
 
         <div className='colorpaint'>
@@ -74,48 +71,67 @@ function App() {
                 <div className='colorpaint-main-controls'>
                 
                     <div className='colorpaint-main-controls-width'>
+
                         <span>Line width</span>
                         <input type='text' readOnly value={numWidth} />
+
                         <div className='colorpaint-main-controls-width-c'>
+
                             <button onClick={handleNumWidthMinus}>-</button>
                             <button onClick={handleNumWidthPlus}>+</button>
+
                         </div>
+
                     </div>
 
                     <div className='colorpaint-main-controls-width'>
+
                         <span>Shadow width</span>
                         <input type='text' readOnly value={shadoWidth} />
+
                         <div className='colorpaint-main-controls-width-c'>
+
                             <button onClick={handleShadoWidthMinus}>-</button>
                             <button onClick={handleShadoWidthPlus}>+</button>
+
                         </div>
+
                     </div>
 
                     <div className='colorpaint-main-controls-color'>
+
                         <span>Shadow Color (hex or name) </span>
                         <input type='text' value={shadowColor} onChange={handleShadowColor} />
+
                         <div className='colorpaint-main-controls-sc-bubble' style={shadowColorStyle}></div>
+
                     </div>
 
                     <div className='colorpaint-main-controls-color'>
+
                         <span>Line Color (hex or name) </span>
                         <input type='text' value={lineColor} onChange={handleLineColor} />
+
                         <div className='colorpaint-main-controls-sc-bubble' style={lineColorStyle}></div>
+
                     </div>
 
                     <button onClick={handleDeleteMode} type='button' className='colorpaint-main-controls-delete'>
+
                         <Delete />
                         <span>Erase</span>
+
                     </button>
 
                 </div>
 
                 <div className='colorpaint-main-board'>
+
                     <Canvas thickMode={numWidth} shadowMode={shadoWidth} shadowColor={shadowColor} lineColor={lineColor} deleteMode={deleteMode} />
+
                 </div>
 
             </div>
-
 
         </div>
     )
