@@ -68,7 +68,7 @@ const Canvas: React.FC<CanvasProps> = ({ deleteMode, thickMode, shadowMode, shad
         }
 
         const deleteBoard = () => {
-            context.clearRect(0, 0, canvas.width, canvas.height);
+            context.clearRect(0, 0, canvas.width, canvas.height)
         }
       
         if (deleteMode) {
@@ -80,31 +80,31 @@ const Canvas: React.FC<CanvasProps> = ({ deleteMode, thickMode, shadowMode, shad
         canvas.addEventListener('mouseup', handleMouseUp)
 
         return () => {
-            canvas.removeEventListener('mousemove', handleMouseMove);
-            canvas.removeEventListener('mousedown', handleMouseDown);
-            canvas.removeEventListener('mouseup', handleMouseUp);
-            cancelAnimationFrame(animationFrameId);
+            canvas.removeEventListener('mousemove', handleMouseMove)
+            canvas.removeEventListener('mousedown', handleMouseDown)
+            canvas.removeEventListener('mouseup', handleMouseUp)
+            cancelAnimationFrame(animationFrameId)
         }
     }, [deleteMode, letDraw])
 
     useEffect(() => {
         const resizeCanvas = () => {
-            const canvas = canvasRef.current;
-            if (!canvas) return;
+            const canvas = canvasRef.current
+            if (!canvas) return
+
+            const parent = canvas.parentElement
+            if (!parent) return
     
-            const parent = canvas.parentElement;
-            if (!parent) return;
-    
-            const { width, height } = parent.getBoundingClientRect();
-            canvas.width = width;
-            canvas.height = height;
+            const { width, height } = parent.getBoundingClientRect()
+            canvas.width = width
+            canvas.height = height
         }
     
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas)
+        resizeCanvas()
     
         return () => {
-            window.removeEventListener('resize', resizeCanvas);
+            window.removeEventListener('resize', resizeCanvas)
         }
       }, [])
 
